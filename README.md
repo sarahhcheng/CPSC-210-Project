@@ -15,3 +15,4 @@ This application will save me a lot of time, being easy to use and time efficent
 - As a user, I want to search or view a list of the current recipes in my book
 - As a user, I want to be able to select a specific recipe in the list to read and/or edit
 - As a user, I want to sort the recipes by categories. For instance, apple pie will be organized in the baking category.
+- As a user, I want to be able to select a random recipe from my list
