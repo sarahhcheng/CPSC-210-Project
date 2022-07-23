@@ -10,8 +10,8 @@ because I will be *living by myself* soon, and I have to learn how to cook.
 This application will save me a lot of time, being easy to use and time efficent.
 
 
-In this application, *the user will be able to*:
-- Create and write their own recipes to add to their collection
-- Search or view a list of the current recipes in the collection
-- Select a recipe in the list to read and/or edit
-- Sort the recipes by categories. For instance, apple pie will be organized in the baking category
+## User Stories
+- As a user, I want to create and write my own recipes to add to my recipe book
+- As a user, I want to search or view a list of the current recipes in my book
+- As a user, I want to be able to select a specific recipe in the list to read and/or edit
+- As a user, I want to sort the recipes by categories. For instance, apple pie will be organized in the baking category.
