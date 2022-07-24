@@ -13,6 +13,10 @@ public class Instructions {
         steps.add(s);
     }
 
+    public ArrayList<String> getStep() {
+        return steps;
+    }
+
     // REQUIRES: i is a valid index, 0 <= i < steps.size()
     public void removeStep(int i) {
         steps.remove(i);

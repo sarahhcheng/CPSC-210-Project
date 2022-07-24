@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Recipe {
+
     private String name;
     private Image img; //stub
     private Instructions instructions;
@@ -38,6 +39,10 @@ public class Recipe {
 
     public Instructions getInstructions() {
         return instructions;
+    }
+
+    public void setInstructions(Instructions instructions) {
+        this.instructions = instructions;
     }
 
     public ArrayList getIngredients() {
