@@ -69,8 +69,9 @@ class recipeBookTests {
         Recipe applePie = new Recipe();
         Recipe blueberryMuffin = new Recipe("blueberryMuffin", 20, 5, "Bakery");
         myrecipeBook.addRecipe(applePie);
+        assertEquals(applePie, myrecipeBook.getRandomRecipe());
         myrecipeBook.addRecipe(blueberryMuffin);
-        // not sure how to test this??
+        assertTrue(myrecipeBook.getRandomRecipe() != null);
     }
 
     @Test
@@ -93,14 +94,33 @@ class recipeBookTests {
     }
 
     @Test
-    public void testIngredientToString() {
+    public void testInstructionToString() {
         Instructions howTo = new Instructions();
         howTo.addStep("Preheat oven to 180 degrees");
-        assertEquals("1) Preheat oven to 180 degrees", howTo.toString());
-
+        assertEquals("1) Preheat oven to 180 degrees\n", howTo.toString());
+        howTo.addStep("Add one cup of flour into bowl");
+        assertEquals("1) Preheat oven to 180 degrees\n2) Add one cup of flour into bowl\n", howTo.toString());
     }
 
+    @Test
+    public void testIngredientsToString() {
+        Ingredient flour = new Ingredient("flour", 20, "g");
+        assertEquals("20.0 g flour", flour.toString());
+    }
 
-
-
+    @Test
+    public void testRecipeToString() {
+        Ingredient flour = new Ingredient("flour", 20, "g");
+        Ingredient sugar = new Ingredient("sugar", 30, "g");
+        assertEquals("20.0 g flour", flour.toString());
+        Instructions howTo = new Instructions();
+        howTo.addStep("Preheat oven to 180 degrees");
+        howTo.addStep("Add one cup of flour into bowl");
+        Recipe Baking = new Recipe();
+        Baking.setInstructions(howTo);
+        Baking.addIngredient(flour);
+        Baking.addIngredient(sugar);
+        assertEquals("20.0 g flour\n30.0 g sugar\n\n1) Preheat oven to 180 degrees" +
+                "\n2) Add one cup of flour into bowl\n", Baking.toString());
+    }
 }
