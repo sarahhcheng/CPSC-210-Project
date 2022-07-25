@@ -16,6 +16,7 @@ public class InstructionsTest {
     @Test
     public void addStepTest() {
         newInstruction.addStep("First, add a cup of flour");
+        newInstruction.addStep("");
         assertEquals(newInstruction.getSize(), 1);
     }
 

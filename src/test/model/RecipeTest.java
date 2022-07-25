@@ -21,6 +21,7 @@ public class RecipeTest {
     public void testGetInstructions() {
         Instructions stepOne = new Instructions();
         stepOne.addStep("Preheat oven");
+        stepOne.addStep("");
         newRecipe.setInstructions(stepOne);
         assertEquals(stepOne, newRecipe.getInstructions());
     }

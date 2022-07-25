@@ -57,6 +57,10 @@ class RecipeBookTests {
         myrecipeBook.addRecipe(blueberryMuffin);
         assertEquals(1, myrecipeBook.getNumberOfRecipes());
         assertTrue(myrecipeBook.removeRecipe("blueberryMuffin"));
+        assertEquals(0, myrecipeBook.getNumberOfRecipes());
+        Recipe chocolateMuffin = new Recipe("Chocolate Muffin", 20, 5, "Bakery");
+        myrecipeBook.addRecipe(chocolateMuffin);
+        assertFalse(myrecipeBook.removeRecipe("blueberryMuffin"));
     }
 
 
@@ -99,7 +103,7 @@ class RecipeBookTests {
         myrecipeBook.addRecipe(applePie);
         assertEquals(applePie, myrecipeBook.getRandomRecipe());
         myrecipeBook.addRecipe(blueberryMuffin);
-        assertTrue(myrecipeBook.getRandomRecipe() != null);
+        assertNotNull(myrecipeBook.getRandomRecipe() );
     }
 
     @Test
