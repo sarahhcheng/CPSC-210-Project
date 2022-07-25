@@ -64,4 +64,16 @@ public class RecipeTest {
         assertEquals("Chinese food", newRecipe.getCategory());
     }
 
+    @Test
+    public void testToString() {
+        Instructions howTo = new Instructions();
+        howTo.addStep("Preheat oven to 180 degrees");
+        assertEquals("1) Preheat oven to 180 degrees\n", howTo.toString());
+        howTo.addStep("Add one cup of flour into bowl");
+        assertEquals("1) Preheat oven to 180 degrees\n2) Add one cup of flour into bowl\n", howTo.toString());
+
+        newRecipe.setInstructions(howTo);
+        assertEquals("blueberry scone: Serves 5. Takes 2 minutes to cook\n\n1) Preheat oven to 180 degrees\n2) Add one cup of flour into bowl\n", newRecipe.toString());
+    }
+
 }
