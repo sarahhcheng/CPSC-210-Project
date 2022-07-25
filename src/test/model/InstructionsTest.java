@@ -41,4 +41,12 @@ public class InstructionsTest {
                 "\n2) Then add another cup of sugar\n3) Mix well\n", newInstruction.toString());
     }
 
+    @Test
+    public void testRemoveStep() {
+        newInstruction.addStep("First, add a cup of flour");
+        newInstruction.addStep("Then add another cup of sugar");
+        newInstruction.removeStep(0);
+        assertEquals("1) Then add another cup of sugar\n", newInstruction.toString());
+    }
+
 }
