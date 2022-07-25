@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class recipeBookTests {
+class RecipeBookTests {
     private RecipeBook myrecipeBook;
     private RecipeBook newRecipleBook;
 
@@ -69,6 +69,7 @@ class recipeBookTests {
         Recipe noodles = new  Recipe("noodles", 20, 1, "Dinner");
         myrecipeBook.addRecipe(noodles);
         Recipe sushi = new Recipe("sushi", 30, 2, "Dinner");
+        myrecipeBook.addRecipe(sushi);
         assertEquals(myrecipeBook.searchRecipe("cookie").size(), 2);
         assertEquals(myrecipeBook.searchRecipe("noodles").size(), 1);
 
@@ -85,7 +86,7 @@ class recipeBookTests {
         Recipe noodles = new  Recipe("noodles", 20, 1, "Dinner");
         myrecipeBook.addRecipe(noodles);
         Recipe sushi = new Recipe("sushi", 30, 2, "Dinner");
-        myrecipeBook.addRecipe(noodles);
+        myrecipeBook.addRecipe(sushi);
         assertEquals(myrecipeBook.searchCategory("Bakery").size(), 2);
         assertEquals(myrecipeBook.searchCategory("Dinner").size(), 2);
 

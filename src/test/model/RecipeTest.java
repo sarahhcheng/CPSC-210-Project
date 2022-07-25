@@ -37,6 +37,7 @@ public class RecipeTest {
         assertEquals(2, newRecipe.getDurationMinutes());
     }
 
+    @Test
     public void testSetDurationMinutes() {
         assertEquals(2, newRecipe.getDurationMinutes());
         newRecipe.setDurationMinutes(5);

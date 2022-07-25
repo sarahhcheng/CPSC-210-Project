@@ -1,13 +1,11 @@
 package ui;
 
-import com.sun.org.apache.bcel.internal.generic.Instruction;
 import model.Instructions;
 import model.Recipe;
 import model.RecipeBook;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class TextUI {
@@ -105,10 +103,6 @@ public class TextUI {
         return getInt();
     }
 
-    public static double askUserForDouble(String msg) {
-        System.out.print(msg + " ");
-        return getDouble();
-    }
 
     public static String getText() {
         String result = input.nextLine();
@@ -123,16 +117,6 @@ public class TextUI {
             return ans;
         } catch (InputMismatchException ex) {
             return 0;
-        }
-    }
-
-    public static double getDouble() {
-        try {
-            double ans = input.nextDouble();
-            input.nextLine(); //get rid of the newline cause nextDouble doesnt
-            return ans;
-        } catch (InputMismatchException ex) {
-            return 0.0;
         }
     }
 }

@@ -11,12 +11,6 @@ public class Ingredient {
         this.units = units;
     }
 
-    public Ingredient() {
-        this.name = "";
-        this.quantity = 0;
-        this.units = "";
-    }
-
     // EFFECTS: returns the name of the ingredient
     public String getName() {
         return name;
