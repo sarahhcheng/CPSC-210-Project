@@ -14,7 +14,6 @@ public class TextUI {
     private static final Scanner input = new Scanner(System.in);
 
     public static void mainMenu(RecipeBook rb) {
-
         while (true) {
             System.out.println("+-----------------------------------------------------------+");
             System.out.println("| Welcome to the recipe book! Please choose an option below |");
@@ -55,37 +54,45 @@ public class TextUI {
                 System.out.println("Sorry, I did not understand");
                 continue;
             }
-
-            String name  = askUserForString("What is the name of the recipe?");
-            String cat   = askUserForString("What type of recipe is this?");
-            int duration = askUserForInt("How long does it take to make?");
-            int servings = askUserForInt("How many people does it serve?");
-            System.out.println("+---------------------+");
-            System.out.println("| Adding Instructions |");
-            System.out.println("+---------------------+");
-            //Instructions ins = new Instructions();
-            ArrayList<String> instructionList = new ArrayList<>();
-            while (true) {
-                String in = askUserForString("Enter instruction or type 'exit' to finish:");
-                if (in.startsWith("exit")) {
-                    break;
-                }
-                instructionList.add(in);
-            }
-            Recipe r = new Recipe();
-            //r.setInstructions(); //may need to implement this
-            rb.addRecipe(r);
+            createRecipe(rb);
         }
     }
 
+    public static void createRecipe(RecipeBook rb) {
+        String name  = askUserForString("What is the name of the recipe?");
+        String cat   = askUserForString("What type of recipe is this?");
+        int duration = askUserForInt("How long does it take to make?");
+        int servings = askUserForInt("How many people does it serve?");
+        System.out.println("+---------------------+");
+        System.out.println("| Adding Instructions |");
+        System.out.println("+---------------------+");
+        Instructions ins = new Instructions();
+        while (true) {
+            String in = askUserForString("Enter instruction or type 'exit' to finish:");
+            if (in.startsWith("exit")) {
+                break;
+            }
+            ins.addStep(in);
+        }
+        Recipe r = new Recipe(name,duration,servings,cat);
+        r.setInstructions(ins); //may need to implement this
+        rb.addRecipe(r);
+    }
+
     public static void searchRecipe(RecipeBook rb) {
-        System.out.println("search recipe stub");
+        String name  = askUserForString("What is the name of the recipe?");
+        ArrayList<Recipe> recipes = rb.searchRecipe(name);
+        System.out.println("-----------------------------------------");
+        for (Recipe r : recipes) {
+            System.out.println(r);
+            System.out.println("-----------------------------------------");
+        }
     }
 
     public static void deleteRecipe(RecipeBook rb) {
-        System.out.println("delete recipe stub");
+        String name  = askUserForString("What is the name of the recipe you want to delete?");
+        rb.removeRecipe(name);
     }
-
 
 
     public static String askUserForString(String msg) {

@@ -60,7 +60,7 @@ public class RecipeBook {
     public ArrayList<Recipe> searchRecipe(String recipeName) {
         ArrayList<Recipe> recipes = new ArrayList<>();
         for (Recipe r:myRecipes) {
-            if (recipeName.contains(r.getName())) {
+            if (r.getName().contains(recipeName)) {
                 recipes.add(r);
             }
         }

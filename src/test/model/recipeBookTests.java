@@ -59,9 +59,36 @@ class recipeBookTests {
         assertTrue(myrecipeBook.removeRecipe("blueberryMuffin"));
     }
 
+
     @Test
     public void testSearchRecipe() {
-        // Need to finish this test
+        Recipe chocolatecookie = new Recipe("chocolate cookie", 20, 5, "Bakery");
+        myrecipeBook.addRecipe(chocolatecookie);
+        Recipe oatmealCookie = new Recipe("outmeal cookie", 30, 4, "Bakery");
+        myrecipeBook.addRecipe(oatmealCookie);
+        Recipe noodles = new  Recipe("noodles", 20, 1, "Dinner");
+        myrecipeBook.addRecipe(noodles);
+        Recipe sushi = new Recipe("sushi", 30, 2, "Dinner");
+        assertEquals(myrecipeBook.searchRecipe("cookie").size(), 2);
+        assertEquals(myrecipeBook.searchRecipe("noodles").size(), 1);
+
+    }
+
+    @Test
+    public void testSearchByCategory() {
+        assertEquals(myrecipeBook.searchCategory("Bakery").size(), 0);
+        assertEquals(myrecipeBook.searchCategory("Dinner").size(), 0);
+        Recipe chocolatecookie = new Recipe("chocolate cookie", 20, 5, "Bakery");
+        myrecipeBook.addRecipe(chocolatecookie);
+        Recipe oatmealCookie = new Recipe("oatmeal cookie", 30, 4, "Bakery");
+        myrecipeBook.addRecipe(oatmealCookie);
+        Recipe noodles = new  Recipe("noodles", 20, 1, "Dinner");
+        myrecipeBook.addRecipe(noodles);
+        Recipe sushi = new Recipe("sushi", 30, 2, "Dinner");
+        myrecipeBook.addRecipe(noodles);
+        assertEquals(myrecipeBook.searchCategory("Bakery").size(), 2);
+        assertEquals(myrecipeBook.searchCategory("Dinner").size(), 2);
+
     }
 
     @Test
@@ -120,7 +147,7 @@ class recipeBookTests {
         Baking.setInstructions(howTo);
         Baking.addIngredient(flour);
         Baking.addIngredient(sugar);
-        assertEquals("20.0 g flour\n30.0 g sugar\n\n1) Preheat oven to 180 degrees" +
+        assertEquals(": Serves 0. Takes 0 minutes to cook\n20.0 g flour\n30.0 g sugar\n\n1) Preheat oven to 180 degrees" +
                 "\n2) Add one cup of flour into bowl\n", Baking.toString());
     }
 }

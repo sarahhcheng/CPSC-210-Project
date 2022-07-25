@@ -1,7 +1,5 @@
 package model;
 
-import sun.rmi.server.InactiveGroupException;
-
 public class Ingredient {
     private String name;
     private double quantity;
@@ -19,18 +17,22 @@ public class Ingredient {
         this.units = "";
     }
 
+    // EFFECTS: returns the name of the ingredient
     public String getName() {
         return name;
     }
 
+    // EFFECTS: returns the amount needed of an ingredient
     public double getQuantity() {
         return quantity;
     }
 
+    // EFFECTS: returns the unit used to measure the ingredient
     public String getUnits() {
         return units;
     }
 
+    // EFFECTS: combines the ingredient name, quantity and units into a sentence
     @Override
     public String toString() {
         return quantity + " " + units + " " + name;
