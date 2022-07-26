@@ -102,9 +102,7 @@ public class Recipe {
         for (int i = 0; i < ingredients.size(); i++) {
             ans += ingredients.get(i) + "\n";
         }
-        if (instructions.toString().length() > 2) {
-            ans += "\n" + instructions.toString();
-        }
+        ans += "\n" + instructions.toString();
 
         return ans;
     }
