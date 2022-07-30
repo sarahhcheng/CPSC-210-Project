@@ -9,8 +9,14 @@ public class Main {
     public static void main(String[] args) {
         RecipeBook myrecipeBook = new RecipeBook("My creation", "Sarah Cheng");
         Recipe chocolatecookie = new Recipe("chocolate cookie", 20, 5, "Bakery");
+        Instructions c1 = new Instructions();
+        c1.addStep("dncjdfnnjdf");
+        chocolatecookie.setInstructions(c1);
+        Instructions c2 = new Instructions();
+        c1.addStep("dfjdnfdjf");
+        chocolatecookie.setInstructions(c2);
         myrecipeBook.addRecipe(chocolatecookie);
-        Recipe oatmealCookie = new Recipe("outmeal cookie", 30, 4, "Bakery");
+        Recipe oatmealCookie = new Recipe("oatmeal cookie", 30, 4, "Bakery");
         myrecipeBook.addRecipe(oatmealCookie);
         Recipe noodles = new  Recipe("noodles", 20, 1, "Dinner");
         myrecipeBook.addRecipe(noodles);

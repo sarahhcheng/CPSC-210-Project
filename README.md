@@ -7,7 +7,7 @@ all the recipes added to it. This way, users can easily revisit some of
 their old recreations by just **searching up the title of the recipe without 
 having to physically rummage through a book.** I felt inspired to work on this
 because I will be *living by myself* soon, and I have to learn how to cook.
-This application will save me a lot of time, being easy to use and time efficent.
+This application will save me a lot of time, being easy to use and time efficient.
 
 
 ## User Stories
@@ -16,3 +16,5 @@ This application will save me a lot of time, being easy to use and time efficent
 - As a user, I want to be able to select a specific recipe in the list to read and/or edit
 - As a user, I want to sort the recipes by categories. For instance, apple pie will be organized in the baking category.
 - As a user, I want to be able to select a random recipe from my list
+- As a user, I want to be able to save the entire creation of my recipe book with all my recipes
+- As a user, I want the ability to reload my recipe book from where I last left off
