@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.stream.Stream;
 
 import model.Ingredient;
+import model.Instructions;
 import model.Recipe;
 import model.RecipeBook;
 import org.json.*;
@@ -62,8 +63,19 @@ public class JsonReader {
             String category = nextRecipe.getString("Category");
             ArrayList<String> instructions = getRecipeInstructions(rb, jsonObject);
             ArrayList<Ingredient> ingredients = getIngredients(rb,jsonObject);
+            Instructions instruction = new Instructions();
+            for (String s: instructions) {
+                instruction.addStep(s);
+            }
 
             Recipe r = new Recipe(recipeName, duration, serves, category);
+
+            for (Ingredient i: ingredients) {
+                r.addIngredient(i);
+            }
+
+            r.setInstructions(instruction);
+
             rb.addRecipe(r);
         }
     }
