@@ -1,9 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.Random;
 
-public class RecipeBook {
+public class RecipeBook implements Writable {
     private ArrayList<Recipe> myRecipes;
     private String title;
     private String author;
@@ -82,5 +86,20 @@ public class RecipeBook {
     public Recipe getRandomRecipe() {
         Random r = new Random();
         return myRecipes.get(r.nextInt(myRecipes.size()));
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Recipe r : myRecipes) {
+            jsonArray.put(r.toJson());
+        }
+
+        JSONObject json = new JSONObject();
+        json.put("Title", title);
+        json.put("Author", author);
+        json.put("Recipes", jsonArray);
+
+        return json;
     }
 }

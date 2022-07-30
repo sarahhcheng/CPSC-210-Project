@@ -1,5 +1,9 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
 public class Instructions {
@@ -43,5 +47,15 @@ public class Instructions {
             ans += String.format("%d) %s\n", i + 1, steps.get(i));
         }
         return ans;
+    }
+
+
+    public JSONArray toJsonArray() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (String s: steps) {
+            jsonArray.put(s);
+        }
+        return jsonArray;
     }
 }

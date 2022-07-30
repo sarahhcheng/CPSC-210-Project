@@ -1,6 +1,9 @@
 package model;
 
-public class Ingredient {
+import org.json.JSONObject;
+import persistence.Writable;
+
+public class Ingredient implements Writable {
     private String name;
     private double quantity;
     private String units;
@@ -30,5 +33,14 @@ public class Ingredient {
     @Override
     public String toString() {
         return quantity + " " + units + " " + name;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Name", name);
+        json.put("Quantity", quantity);
+        json.put("Units", units);
+        return json;
     }
 }

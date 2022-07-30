@@ -1,8 +1,12 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
-public class Recipe {
+public class Recipe implements Writable {
 
     private String name;
 //    private Image img; //stub
@@ -105,5 +109,23 @@ public class Recipe {
         ans += "\n" + instructions.toString();
 
         return ans;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Ingredient i : ingredients) {
+            jsonArray.put(i.toJson());
+        }
+
+        JSONObject json = new JSONObject();
+        json.put("Name", name);
+        json.put("Instructions", instructions.toJsonArray());
+        json.put("Ingredients", jsonArray);
+        json.put("Duration Minutes", durationMinutes);
+        json.put("Serves", serves);
+        json.put("Category", category);
+
+        return json;
     }
 }
