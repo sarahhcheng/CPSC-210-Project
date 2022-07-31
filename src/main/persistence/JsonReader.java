@@ -14,6 +14,7 @@ import model.RecipeBook;
 import org.json.*;
 
 // Represents a reader that reads workroom from JSON data stored in file
+// Referenced code from the demo example
 public class JsonReader {
     private String source;
 
@@ -61,8 +62,8 @@ public class JsonReader {
             int duration = nextRecipe.getInt("Duration Minutes");
             int serves = nextRecipe.getInt("Serves");
             String category = nextRecipe.getString("Category");
-            ArrayList<String> instructions = getRecipeInstructions(rb, jsonObject);
-            ArrayList<Ingredient> ingredients = getIngredients(rb,jsonObject);
+            ArrayList<String> instructions = getRecipeInstructions(nextRecipe);
+            ArrayList<Ingredient> ingredients = getIngredients(nextRecipe);
             Instructions instruction = new Instructions();
             for (String s: instructions) {
                 instruction.addStep(s);
@@ -80,23 +81,23 @@ public class JsonReader {
         }
     }
 
-    private ArrayList<String> getRecipeInstructions(RecipeBook rb, JSONObject jsonObject) {
-        JSONArray instructions = jsonObject.getJSONArray("Instructions");
+    private ArrayList<String> getRecipeInstructions(JSONObject recipe) {
+        JSONArray instructions = recipe.getJSONArray("Instructions");
         ArrayList<String> instructionArray = new ArrayList<>();
         for (Object s : instructions) {
-            instructionArray.add(s.toString());
+            instructionArray.add((String) s);
         }
         return instructionArray;
     }
 
-    private ArrayList<Ingredient> getIngredients(RecipeBook rb, JSONObject jsonObject) {
-        JSONArray instructions = jsonObject.getJSONArray("Instructions");
+    private ArrayList<Ingredient> getIngredients(JSONObject recipe) {
+        JSONArray instructions = recipe.getJSONArray("Ingredients");
         ArrayList<Ingredient> ingredientsArray = new ArrayList<>();
         for (Object json : instructions) {
             JSONObject nextIngredient = (JSONObject) json;
-            String name = jsonObject.getString("Name");
-            double quantity = jsonObject.getDouble("Quantity");
-            String units = jsonObject.getString("Units");
+            String name = nextIngredient.getString("Name");
+            double quantity = nextIngredient.getDouble("Quantity");
+            String units = nextIngredient.getString("Units");
             Ingredient i = new Ingredient(name,quantity,units);
             ingredientsArray.add(i);
         }

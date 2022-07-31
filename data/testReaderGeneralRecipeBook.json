@@ -1,0 +1,18 @@
+{
+    "Title": "My creation",
+    "Author": "Sarah Cheng",
+    "Recipes": [
+        {
+            "Duration Minutes": 20,
+            "Serves": 5,
+            "Category": "Bakery",
+            "Ingredients": [{
+              "Quantity": 5,
+              "Units": "mL",
+              "Name": "suffering"
+            }],
+            "Instructions": ["dncjdfnnjdf","dfjdnfdjf"],
+            "Name": "chocolate cookie"
+        }
+    ]
+}

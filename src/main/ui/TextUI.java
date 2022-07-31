@@ -3,6 +3,7 @@ package ui;
 import model.Instructions;
 import model.Recipe;
 import model.RecipeBook;
+import persistence.JsonWriter;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -13,10 +14,7 @@ public class TextUI {
 
     public static void mainMenu(RecipeBook rb) {
         while (true) {
-            System.out.println("Welcome to the recipe book! Please choose an option below");
-            System.out.println("(a)dd recipe                (s)earch recipes");
-            System.out.println("(c)ategory search           (d)elete recipes");
-            System.out.println("(f)etch random recipe       (e)xit");
+            printInstructions();
             String input = getText().substring(0,1).toLowerCase();
             if (input.equals("a")) {
                 addRecipe(rb);
@@ -29,12 +27,22 @@ public class TextUI {
             } else if (input.equals("f")) {
                 getRandomRecipe(rb);
             } else if (input.equals("e")) {
+                JsonWriter jw = new JsonWriter("./data/My Recipe Book.json");
+                jw.write(rb);
+                jw.close();
                 break;
             } else {
                 System.out.println("Sorry, I did not understand");
             }
         }
         System.out.println("Thanks for using the recipe book!");
+    }
+
+    private static void printInstructions() {
+        System.out.println("Welcome to the recipe book! Please choose an option below");
+        System.out.println("(a)dd recipe                (s)earch recipes");
+        System.out.println("(c)ategory search           (d)elete recipes");
+        System.out.println("(f)etch random recipe       (e)xit");
     }
 
     public static void addRecipe(RecipeBook rb) {

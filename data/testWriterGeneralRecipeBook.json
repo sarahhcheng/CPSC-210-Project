@@ -1,0 +1,34 @@
+{
+    "Title": "My creation",
+    "Author": "Sarah Cheng",
+    "Recipes": [
+        {
+            "Duration Minutes": 20,
+            "Serves": 5,
+            "Category": "Bakery",
+            "Ingredients": [],
+            "Instructions": [],
+            "Name": "chocolate cookie"
+        },
+        {
+            "Duration Minutes": 30,
+            "Serves": 4,
+            "Category": "Bakery",
+            "Ingredients": [{
+                "Quantity": 2,
+                "Units": "mL",
+                "Name": "pain"
+            }],
+            "Instructions": ["This is pain"],
+            "Name": "oatmeal cookie"
+        },
+        {
+            "Duration Minutes": 20,
+            "Serves": 1,
+            "Category": "Dinner",
+            "Ingredients": [],
+            "Instructions": [],
+            "Name": "noodles"
+        }
+    ]
+}
