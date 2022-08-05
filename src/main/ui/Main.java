@@ -9,16 +9,16 @@ import persistence.JsonReader;
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) {
-        RecipeBook myrecipeBook = new RecipeBook("",""); //to be overwritten
-        try {
-            JsonReader jr = new JsonReader("./data/My Recipe Book.json");
-            myrecipeBook = jr.read();
-        } catch (IOException e) {
-            createDefaultRecipeBook(myrecipeBook);
-        }
-        TextUI.mainMenu(myrecipeBook);
-    }
+//    public static void main(String[] args) {
+//        RecipeBook myrecipeBook = new RecipeBook("",""); //to be overwritten
+//        try {
+//            JsonReader jr = new JsonReader("./data/My Recipe Book.json");
+//            myrecipeBook = jr.read();
+//        } catch (IOException e) {
+//            createDefaultRecipeBook(myrecipeBook);
+//        }
+//        TextUI.mainMenu(myrecipeBook);
+//    }
 
     private static void createDefaultRecipeBook(RecipeBook myrecipeBook) {
         myrecipeBook = new RecipeBook("My creation", "Sarah Cheng");
