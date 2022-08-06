@@ -5,11 +5,12 @@ import model.Instructions;
 import model.Recipe;
 import model.RecipeBook;
 import persistence.JsonReader;
+import persistence.JsonWriter;
 
 import java.io.IOException;
 
 public class Main {
-//    public static void main(String[] args) {
+    public static void main(String[] args) {
 //        RecipeBook myrecipeBook = new RecipeBook("",""); //to be overwritten
 //        try {
 //            JsonReader jr = new JsonReader("./data/My Recipe Book.json");
@@ -18,7 +19,8 @@ public class Main {
 //            createDefaultRecipeBook(myrecipeBook);
 //        }
 //        TextUI.mainMenu(myrecipeBook);
-//    }
+        RecipeBookFrame open = new RecipeBookFrame();
+    }
 
     private static void createDefaultRecipeBook(RecipeBook myrecipeBook) {
         myrecipeBook = new RecipeBook("My creation", "Sarah Cheng");
@@ -40,5 +42,9 @@ public class Main {
         oatmealCookie.setInstructions(stepone);
         Ingredient pain = new Ingredient("pain", 2, "mL");
         oatmealCookie.addIngredient(pain);
+        RecipeBook rb = new RecipeBook("I don't like you", "Sarah");
+        JsonWriter writer = new JsonWriter("./data/testWriterEmptyRecipeBook.json");
+        writer.write(rb);
+        writer.close();
     }
 }
