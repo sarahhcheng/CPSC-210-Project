@@ -5,9 +5,11 @@ import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.plaf.basic.BasicSplitPaneUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -84,10 +86,11 @@ public class RecipeBookFrame extends JFrame implements ListSelectionListener {
     public void recipePanel() {
         panel = new JPanel();
         JLabel recipes = new JLabel("Recipes:" + "\n", JLabel.CENTER);
-        recipes.setFont(new Font("Serif", Font.PLAIN, 30));
+        recipes.setFont(new Font("Serif", Font.HANGING_BASELINE, 30));
         panel.add(recipes);
         panel.setPreferredSize(new Dimension(200, 800));
         panel.setMaximumSize(new Dimension(200, 800));
+//        setUpButtonListeners();
     }
 
 
@@ -103,7 +106,7 @@ public class RecipeBookFrame extends JFrame implements ListSelectionListener {
         bottomPadding.setPreferredSize(new Dimension(150, 100));
         bottomPadding.setMaximumSize(new Dimension(150, 100));
         bottomPadding.setBackground(new Color(0xE1FCFA));
-        bottomPadding.setLayout(new BoxLayout(bottomPadding, BoxLayout.LINE_AXIS));
+        bottomPadding.setLayout(new FlowLayout());
         addRecipe = new JButton("Add");
         removeRecipe = new JButton("Remove");
         loadRecipe = new JButton("Load recipe");
@@ -121,27 +124,43 @@ public class RecipeBookFrame extends JFrame implements ListSelectionListener {
     public void recipeInputFields() {
         listofInputs = new ArrayList<>();
         recipeName = new JTextField();
-        recipeName.setPreferredSize(new Dimension(20, 20));
+        recipeName.setPreferredSize(new Dimension(125, 30));
         recipeName.setBounds(20,20, 20, 20);
         ingredients = new JTextField();
-        ingredients.setPreferredSize(new Dimension(20, 1));
-        ingredients.setBounds(100, 20, 20,20);
+        ingredients.setPreferredSize(new Dimension(160, 30));
+        instructions = new JTextField();
+        instructions.setPreferredSize(new Dimension(160, 30));
 
-
-
-        instructions = new JTextField(1);
 
         listofInputs.add(recipeName);
         listofInputs.add(ingredients);
         listofInputs.add(instructions);
 
-        bottomPadding.add(new JLabel("Recipe:  "));
+        JLabel simplerecipe = new JLabel("Recipe:");
+        simplerecipe.setFont(new Font("Serif", Font.HANGING_BASELINE, 18));
+        bottomPadding.add(simplerecipe);
         bottomPadding.add(recipeName);
-        bottomPadding.add(new JLabel("Ingredients:  "));
+
+        JLabel simpleingredients = new JLabel("Ingredients:");
+        simpleingredients.setFont(new Font("Serif", Font.HANGING_BASELINE, 18));
+        bottomPadding.add(simpleingredients);
         bottomPadding.add(ingredients);
-        bottomPadding.add(new JLabel("Instructions:  "));
+
+        JLabel simpleinstructions = new JLabel("Instructions:");
+        simpleinstructions.setFont(new Font("Serif", Font.HANGING_BASELINE, 18));
+        bottomPadding.add(simpleinstructions);
         bottomPadding.add(instructions);
     }
+
+//    public void setUpButtonListeners() {
+//        ActionListener buttonListener = new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                panel.add(new JLabel("New recipe"));
+//            }
+//        };
+//        addRecipe.addActionListener(buttonListener);
+//    }
 
 
     // Effects: Adds Listener
@@ -153,12 +172,32 @@ public class RecipeBookFrame extends JFrame implements ListSelectionListener {
         }
     }
 
-    public class RemoveRecipeListener implements ActionListener {
+//    public class RemoveRecipeListener implements ActionListener {
+//
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//
+//        }
+//    }
+//
+//    // EFFECTS: removes everything in the recipe book
+//    public void clearRecipeBook() {
+//        for (JTextField inputFields: listofInputs) {
+//            inputFields.remove(inputFields);
+//        }
+//    }
+//
+//    // EFFECTS: does not add the recipe if not all input fields are used
+//    public void checkEmptyInputs() {
+//        for (JTextField inputFields: listofInputs) {
+//            String name = inputFields.getText();
+//
+//            if (name == "") {
+//                inputFields.selectAll();
+//                return;
+//            }
+//        }
+//    }
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
 
-        }
-    }
 }
-
