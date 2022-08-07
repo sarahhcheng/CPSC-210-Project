@@ -1,10 +1,25 @@
 package ui;
 
+import model.*;
+import persistence.JsonReader;
+import persistence.JsonWriter;
+
 import javax.swing.*;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class RecipeBookFrame extends JFrame {
+public class RecipeBookFrame extends JFrame implements ListSelectionListener {
+    private JList list;
+    private DefaultListModel listModel;
+
+    private ImageIcon image;
+    private JLabel displayImage;
+
     private JPanel banner;
     private JPanel panel;
     private JPanel padding;
@@ -20,8 +35,14 @@ public class RecipeBookFrame extends JFrame {
     private JButton removeRecipe;
     private JButton loadRecipe;
 
+    private Recipe recipe;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+
+
 
     public RecipeBookFrame() {
+
         firstPanel();
         recipePanel();
         paddingPanel();
@@ -50,8 +71,15 @@ public class RecipeBookFrame extends JFrame {
         banner.setBackground(new Color(0xE1FCFA));
         banner.setPreferredSize(new Dimension(1000, 75));
         banner.setMaximumSize(new Dimension(1000, 100));
-    }
+        try {
+            image = new ImageIcon(getClass().getResource("output-onlinepngtools (1).png"));
+            displayImage = new JLabel(image);
+            banner.add(displayImage);
+        } catch (Exception e) {
+            System.out.println("Image cannot be found");
+        }
 
+    }
 
     public void recipePanel() {
         panel = new JPanel();
@@ -72,8 +100,8 @@ public class RecipeBookFrame extends JFrame {
 
     public void getBottomPadding() {
         bottomPadding = new JPanel();
-        bottomPadding.setPreferredSize(new Dimension(150, 200));
-        bottomPadding.setMaximumSize(new Dimension(150, 200));
+        bottomPadding.setPreferredSize(new Dimension(150, 100));
+        bottomPadding.setMaximumSize(new Dimension(150, 100));
         bottomPadding.setBackground(new Color(0xE1FCFA));
         bottomPadding.setLayout(new BoxLayout(bottomPadding, BoxLayout.LINE_AXIS));
         addRecipe = new JButton("Add");
@@ -93,20 +121,44 @@ public class RecipeBookFrame extends JFrame {
     public void recipeInputFields() {
         listofInputs = new ArrayList<>();
         recipeName = new JTextField();
+        recipeName.setPreferredSize(new Dimension(20, 20));
+        recipeName.setBounds(20,20, 20, 20);
         ingredients = new JTextField();
-        instructions = new JTextField();
+        ingredients.setPreferredSize(new Dimension(20, 1));
+        ingredients.setBounds(100, 20, 20,20);
+
+
+
+        instructions = new JTextField(1);
 
         listofInputs.add(recipeName);
         listofInputs.add(ingredients);
         listofInputs.add(instructions);
 
-        bottomPadding.add(new JLabel("Recipe: "));
+        bottomPadding.add(new JLabel("Recipe:  "));
         bottomPadding.add(recipeName);
-        bottomPadding.add(new JLabel("Ingredients: "));
+        bottomPadding.add(new JLabel("Ingredients:  "));
         bottomPadding.add(ingredients);
-        bottomPadding.add(new JLabel("Instructions: "));
+        bottomPadding.add(new JLabel("Instructions:  "));
         bottomPadding.add(instructions);
     }
 
 
+    // Effects: Adds Listener
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        for (JTextField textField : listofInputs) {
+            textField.addActionListener((ActionListener) e);
+            textField.getDocument().addDocumentListener((DocumentListener) e);
+        }
+    }
+
+    public class RemoveRecipeListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
 }
+
