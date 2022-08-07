@@ -87,6 +87,7 @@ public class RecipeBookFrame extends JFrame implements ListSelectionListener {
         panel = new JPanel();
         JLabel recipes = new JLabel("Recipes:" + "\n", JLabel.CENTER);
         recipes.setFont(new Font("Serif", Font.HANGING_BASELINE, 30));
+        panel.setBackground(new Color(0xFEF2D7));
         panel.add(recipes);
         panel.setPreferredSize(new Dimension(200, 800));
         panel.setMaximumSize(new Dimension(200, 800));
@@ -107,9 +108,12 @@ public class RecipeBookFrame extends JFrame implements ListSelectionListener {
         bottomPadding.setMaximumSize(new Dimension(150, 100));
         bottomPadding.setBackground(new Color(0xE1FCFA));
         bottomPadding.setLayout(new FlowLayout());
-        addRecipe = new JButton("Add");
-        removeRecipe = new JButton("Remove");
+        addRecipe = new JButton("+");
+        addRecipe.setFont(new Font("Arial", Font.BOLD, 15));
+        removeRecipe = new JButton("-");
+        removeRecipe.setFont(new Font("Arial", Font.BOLD, 15));
         loadRecipe = new JButton("Load recipe");
+        loadRecipe.setFont(new Font("Serif", Font.TRUETYPE_FONT, 15));
 
         recipeInputFields();
 
@@ -127,9 +131,9 @@ public class RecipeBookFrame extends JFrame implements ListSelectionListener {
         recipeName.setPreferredSize(new Dimension(125, 30));
         recipeName.setBounds(20,20, 20, 20);
         ingredients = new JTextField();
-        ingredients.setPreferredSize(new Dimension(160, 30));
+        ingredients.setPreferredSize(new Dimension(180, 30));
         instructions = new JTextField();
-        instructions.setPreferredSize(new Dimension(160, 30));
+        instructions.setPreferredSize(new Dimension(190, 30));
 
 
         listofInputs.add(recipeName);
@@ -152,15 +156,19 @@ public class RecipeBookFrame extends JFrame implements ListSelectionListener {
         bottomPadding.add(instructions);
     }
 
-//    public void setUpButtonListeners() {
-//        ActionListener buttonListener = new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                panel.add(new JLabel("New recipe"));
-//            }
-//        };
-//        addRecipe.addActionListener(buttonListener);
-//    }
+    public void setUpButtonListeners() {
+        ActionListener buttonListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getActionCommand().equals("Add")) {
+                    System.out.println("Add button has been clicked");
+                } else if (e.getActionCommand().equals("Remove")) {
+                    System.out.println("Remove button has been clicked");
+                }
+            }
+        };
+        addRecipe.addActionListener(buttonListener);
+    }
 
 
     // Effects: Adds Listener
