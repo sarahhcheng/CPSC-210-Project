@@ -88,6 +88,10 @@ public class RecipeBook implements Writable {
         return myRecipes.get(r.nextInt(myRecipes.size()));
     }
 
+    public ArrayList<Recipe> getMyRecipes() {
+        return myRecipes;
+    }
+
     @Override
     public JSONObject toJson() {
         JSONArray jsonArray = new JSONArray();
