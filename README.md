@@ -18,3 +18,15 @@ This application will save me a lot of time, being easy to use and time efficien
 - As a user, I want to be able to select a random recipe from my list
 - As a user, I want to be able to save the entire creation of my recipe book with all my recipes
 - As a user, I want the ability to reload my recipe book from where I last left off
+
+## Instructions for Grader
+- If you want to add multiple recipes to the recipe book, first enter the name of the recipe,
+the duration and the amount of people it serves and then click the + button for it to display on the 
+side panel
+- If you want to add multiple ingredients to a recipe, fill in the ingredients, quantity
+and unit input fields and then click the + Ingredient button
+- If you want to add multiple instructions to a recipe, fill in the instructions input 
+field and then click the + Instructions button
+- You can locate my visual component at the top of the screen next to the title: My Recipe Book
+- You can save the state of my application by clicking the save button
+- You can reload the state of my application by clicking the load recipe button

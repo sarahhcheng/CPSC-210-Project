@@ -15,6 +15,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+
+// Class for the GUI of my recipe book
 public class RecipeBookFrame extends JFrame implements ListSelectionListener {
     private JList list;
     private DefaultListModel listModel;
@@ -47,12 +49,12 @@ public class RecipeBookFrame extends JFrame implements ListSelectionListener {
     private JButton addInstructions;
     private JButton addIngredients;
 
-    private Recipe recipe;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
 
 
+    // Constructor for MyRecipeBookFrame
     public RecipeBookFrame() {
 
         listModel = new DefaultListModel<>();
@@ -81,6 +83,8 @@ public class RecipeBookFrame extends JFrame implements ListSelectionListener {
         this.setVisible(true);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the first panel that includes the title and the recipebook image onto the GUI
     public void firstPanel() {
         banner = new JPanel();
         JLabel welcome = new JLabel("My Recipe Book", JLabel.CENTER);
@@ -100,56 +104,61 @@ public class RecipeBookFrame extends JFrame implements ListSelectionListener {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates the side panel that displays the list of all the added recipes, includes a scroll bar
     public void recipePanel() {
         panel = new JPanel();
         JLabel recipes = new JLabel("Recipes:" + "\n", JLabel.CENTER);
-        recipes.setFont(new Font("Serif", Font.HANGING_BASELINE, 30));
+        recipes.setFont(new Font("Serif", Font.ROMAN_BASELINE, 30));
         panel.setBackground(new Color(0xFEF2D7));
         panel.add(recipes);
         panel.setPreferredSize(new Dimension(200, 800));
         panel.setMaximumSize(new Dimension(200, 800));
         recipeList.createVerticalScrollBar();
         recipeList.setPreferredSize(new Dimension(200, 800));
+        recipeList.setFont(new Font("Serif", Font.ROMAN_BASELINE, 20));
         panel.add(recipeList, BorderLayout.WEST);
 
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates the panel where all the corresponding info related to each recipe is displayed
     public void paddingPanel() {
         padding = new JPanel();
         padding.setBackground(new Color(0xFCE7E1));
         padding.setPreferredSize(new Dimension(800, 600));
         padding.setMaximumSize(new Dimension(1000, 600));
+        displayRecipe.setFont(new Font("Serif", Font.ROMAN_BASELINE, 20));
         displayRecipe.setPreferredSize(new Dimension(400, 400));
         displayRecipe.setBackground(new Color(0xFCE7E1));
         displayRecipe.setEditable(false);
         padding.add(displayRecipe);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates the bottom panel and add all the elements onto the bottom padding
     public void getBottomPadding() {
         bottomPadding = new JPanel();
-        bottomPadding.setPreferredSize(new Dimension(150, 100));
-        bottomPadding.setMaximumSize(new Dimension(150, 100));
+        bottomPadding.setPreferredSize(new Dimension(150, 125));
+        bottomPadding.setMaximumSize(new Dimension(150, 125));
         bottomPadding.setBackground(new Color(0xE1FCFA));
         bottomPadding.setLayout(new FlowLayout());
-
-
         createButtons();
         createInputFields();
         inputField1();
         inputField2();
-
         bottomPadding.add(addRecipe);
         bottomPadding.add(removeRecipe);
         bottomPadding.add(saveButton);
-        bottomPadding.add(addIngredients);
-        bottomPadding.add(addInstructions);
         bottomPadding.add(loadRecipe);
         bottomPadding.add(Box.createHorizontalStrut(10));
         bottomPadding.add(new JSeparator(SwingConstants.VERTICAL));
         bottomPadding.add(Box.createHorizontalStrut(10));
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates and initializes all the buttons used for the actionlisteners functionality to work
     public void createButtons() {
         addRecipe = new JButton("+");
         addRecipe.setFont(new Font("Arial", Font.BOLD, 15));
@@ -180,9 +189,10 @@ public class RecipeBookFrame extends JFrame implements ListSelectionListener {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates all the input fields that the user can add to their recipes
     public void createInputFields() {
         listofInputs = new ArrayList<>();
-
         recipeName = new JTextField();
         recipeName.setPreferredSize(new Dimension(125, 30));
         recipeName.setBounds(20,20, 20, 20);
@@ -207,6 +217,8 @@ public class RecipeBookFrame extends JFrame implements ListSelectionListener {
         listofInputs.add(instructions);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds a bunch of input fields to the bottom panel
     public void inputField1() {
         JLabel simplerecipe = new JLabel("Recipe:");
         simplerecipe.setFont(new Font("Serif", Font.HANGING_BASELINE, 18));
@@ -224,6 +236,8 @@ public class RecipeBookFrame extends JFrame implements ListSelectionListener {
         bottomPadding.add(serves);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds a bunch of input fields to the bottom panel
     public void inputField2() {
         JLabel simpleingredients = new JLabel("\n" + " Ingredients:");
         simpleingredients.setFont(new Font("Serif", Font.HANGING_BASELINE, 18));
@@ -240,10 +254,13 @@ public class RecipeBookFrame extends JFrame implements ListSelectionListener {
         bottomPadding.add(ingredientU);
         bottomPadding.add(ingredientUnit);
 
+        bottomPadding.add(addIngredients);
+
         JLabel simpleinstructions = new JLabel("  Instructions:");
         simpleinstructions.setFont(new Font("Serif", Font.HANGING_BASELINE, 18));
         bottomPadding.add(simpleinstructions);
         bottomPadding.add(instructions);
+        bottomPadding.add(addInstructions);
     }
 
 
@@ -260,6 +277,8 @@ public class RecipeBookFrame extends JFrame implements ListSelectionListener {
 
 // The AddListener class, allows the add button to add the recipe to the display
     class AddListener implements ActionListener {
+
+        // EFFECTS: adds a new recipe to the recipe book when the button is pressed and calls the display
         @Override
         public void actionPerformed(ActionEvent e) {
             Recipe newRecipe = createRecipe();
@@ -285,7 +304,10 @@ public class RecipeBookFrame extends JFrame implements ListSelectionListener {
         }
     }
 
+// The AddIngredients class, allows the + ingredient button to add the recipe ingredient to corresponding display
     class AddIngredients implements ActionListener {
+
+        // EFFECTS: gets the text inputted in the ingredients field by the user and adds the information to the display
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
@@ -304,7 +326,10 @@ public class RecipeBookFrame extends JFrame implements ListSelectionListener {
         }
     }
 
+    // The AddInstruction class, allows the + instruction button to add the recipe instruction to correspinding display
     class AddInstruction implements ActionListener {
+
+        // EFFECTS: gets the text inputted in the instructions field by the user and adds the information to the display
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
@@ -318,14 +343,16 @@ public class RecipeBookFrame extends JFrame implements ListSelectionListener {
         }
     }
 
+// The AutoSave class, allows the Recipes in the recipe book to be saved
     class AutoSave implements ActionListener {
 
-        // EFFECTS: saves the recipes of the recipebook
+        // EFFECTS: calls the saveRecipes method
         @Override
         public void actionPerformed(ActionEvent e) {
             saveRecipes();
         }
 
+        // EFFECTS: saves the recipe to the recipe book once the save button is pressed
         public void saveRecipes() {
             try {
                 jsonWriter = new JsonWriter("./data/RecipeBook.json");
@@ -338,13 +365,16 @@ public class RecipeBookFrame extends JFrame implements ListSelectionListener {
         }
     }
 
+    // the Load class, allows all the recipes previously added to the recipebook to be loaded
     class Load implements ActionListener {
 
+        // EFFECTS: Calls the loadingRecipe method
         @Override
         public void actionPerformed(ActionEvent e) {
             loadingRecipe();
         }
 
+        // EFFECTS: loads the saved recipes from the recipe book once the load button is pressed
         public void loadingRecipe() {
             try {
                 jsonReader = new JsonReader("./data/RecipeBook.json");
@@ -360,7 +390,10 @@ public class RecipeBookFrame extends JFrame implements ListSelectionListener {
         }
     }
 
+    // the Remover class, allows user to delete a recipe from the book
     class Remover implements ActionListener {
+
+        // EFFECTS: removes a recipe from the recipe book once the - button is clicked
         @Override
         public void actionPerformed(ActionEvent e) {
             if (list.getSelectedIndex() < 0 || list.getSelectedIndex() >= listModel.size()) {
@@ -378,7 +411,10 @@ public class RecipeBookFrame extends JFrame implements ListSelectionListener {
         }
     }
 
+    // the UpdateDisplay class, updates the display everytime new information about a recipe is added
     class UpdateDisplay implements ListSelectionListener {
+
+        // EFFECTS: updates the display everytime new information about a recipe is added
         @Override
         public void valueChanged(ListSelectionEvent e) {
             Recipe r;
