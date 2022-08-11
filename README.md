@@ -30,3 +30,39 @@ field and then click the + Instructions button
 - You can locate my visual component at the top of the screen next to the title: My Recipe Book
 - You can save the state of my application by clicking the save button
 - You can reload the state of my application by clicking the load recipe button
+
+## Phase 4: Task 2
+- Thu Aug 11 14:16:15 PDT 2022
+- Recipe 'ahshh' has been added
+- Thu Aug 11 14:17:02 PDT 2022
+- Recipe 'ahshh' has been added
+- Thu Aug 11 14:17:10 PDT 2022
+- Recipe 'dejdjedje' has been added
+- Thu Aug 11 14:17:10 PDT 2022
+- Recipe 'dejdjedje' has been added
+- Thu Aug 11 14:17:10 PDT 2022
+- Recipe 'dejdjedje' has been added
+- Thu Aug 11 14:17:18 PDT 2022
+- Recipe 'cdhhjvhrvbh' has been added
+- Thu Aug 11 14:17:19 PDT 2022
+- Recipe 'cdhhjvhrvbh' has been added
+- Thu Aug 11 14:17:34 PDT 2022
+- Recipe 'aaaaaaaaaaaaaaaaa' has been added
+- Thu Aug 11 14:17:49 PDT 2022
+- Recipe 'aka' has been added
+- Thu Aug 11 14:17:50 PDT 2022
+- Recipe 'aka' has been added
+- Thu Aug 11 14:17:54 PDT 2022
+- Recipe 'cdhhjvhrvbh' has been removed
+- Thu Aug 11 14:17:57 PDT 2022
+- Recipe 'dejdjedje' has been removed
+- Thu Aug 11 14:18:00 PDT 2022
+- Recipe 'ahshh' has been removed
+
+## Phase 4: Task 3
+If I had more time, I would refactor my code so that the buttons I  made at the bottom would be more organized. 
+Right now, using my application is not that intuitive because of the way the buttons are set up. For instance, 
+the ingredients and instructions are added separately from the recipe name, duration and the number of people 
+it serves. In order to do make this change, I would either make three new JPanels within my bottom panel for the
+general recipe input fields and buttons, ingredient info and instructions info, or I would use a JSeparator to do that.
+This way, my application will be very intuitive to use for anyone without having to open my README file.
