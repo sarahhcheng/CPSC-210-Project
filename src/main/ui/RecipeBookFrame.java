@@ -1,6 +1,7 @@
 package ui;
 
 import model.*;
+import model.Event;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -14,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.EventListener;
 
 
 // Class for the GUI of my recipe book
@@ -48,6 +50,7 @@ public class RecipeBookFrame extends JFrame implements ListSelectionListener {
     private JButton loadRecipe;
     private JButton addInstructions;
     private JButton addIngredients;
+    private JButton quitButton;
 
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
@@ -101,7 +104,8 @@ public class RecipeBookFrame extends JFrame implements ListSelectionListener {
         } catch (Exception e) {
             System.out.println("Image cannot be found");
         }
-
+        createButtons();
+        banner.add(quitButton);
     }
 
     // MODIFIES: this
@@ -186,7 +190,9 @@ public class RecipeBookFrame extends JFrame implements ListSelectionListener {
         loadRecipe.setFont(new Font("Serif", Font.TRUETYPE_FONT, 15));
         loadRecipe.addActionListener(new Load());
 
-
+        quitButton = new JButton("X");
+        quitButton.setFont(new Font("Serif", Font.TRUETYPE_FONT, 15));
+        quitButton.addActionListener(new PrintLog());
     }
 
     // MODIFIES: this
@@ -362,6 +368,27 @@ public class RecipeBookFrame extends JFrame implements ListSelectionListener {
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }
+        }
+    }
+
+
+    class PrintLog implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            printLog(RecipeBook.getEventLog());
+        }
+
+        public void printLog(EventLog events) {
+            for (Event e: events) {
+                System.out.println(e.toString());
+
+//            while (events.iterator().hasNext()) {
+//                Event nextEvent = (Event) events.iterator().next();
+//                System.out.println(nextEvent.toString());
+//            }
+            }
+            System.exit(0);
         }
     }
 

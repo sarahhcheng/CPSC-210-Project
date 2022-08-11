@@ -11,11 +11,13 @@ public class RecipeBook implements Writable {
     private ArrayList<Recipe> myRecipes;
     private String title;
     private String author;
+    private static EventLog events;
 
     public RecipeBook(String title, String author) {
         myRecipes = new ArrayList<>();
         this.title = title;
         this.author = author;
+        events = EventLog.getInstance();
     }
 
     // EFFECTS: returns the title of the recipe book
@@ -37,13 +39,14 @@ public class RecipeBook implements Writable {
     // MODIFIES: this
     // EFFECTS: adds a recipe to the recipe book
     public void addRecipe(Recipe r) {
+        events.logEvent(new Event("Recipe '" + r.getName() + "' has been added"));
         myRecipes.add(r);
-
     }
 
     // MODIFIES: this
     // EFFECTS: removes the given recipe from the recipe book and returns true, false otherwise
     public boolean removeRecipe(Recipe r) {
+        events.logEvent(new Event("Recipe '" + r.getName() + "' has been removed"));
         return myRecipes.remove(r);
     }
 
@@ -51,6 +54,7 @@ public class RecipeBook implements Writable {
     // EFFECTS: removes all the recipes with the given recipe name
     //          from the recipe book and returns true, false otherwise
     public boolean removeRecipe(String recipeName) {
+        events.logEvent(new Event("Recipe '" + recipeName + "' has been removed"));
         for (Recipe r:myRecipes) {
             if (recipeName.equals(r.getName())) {
                 myRecipes.remove(r);
@@ -68,6 +72,7 @@ public class RecipeBook implements Writable {
                 recipes.add(r);
             }
         }
+        events.logEvent(new Event("Searching :'" + recipeName + "' (by name) yielded " + recipes.size() + " results"));
         return recipes;
     }
 
@@ -79,17 +84,25 @@ public class RecipeBook implements Writable {
                 recipes.add(r);
             }
         }
+        events.logEvent(new Event(
+                "Searching :'" + recipeName + "' (by category) yielded " + recipes.size() + " results"));
         return recipes;
     }
 
     // EFFECTS: returns a random recipe from the recipe book
     public Recipe getRandomRecipe() {
         Random r = new Random();
-        return myRecipes.get(r.nextInt(myRecipes.size()));
+        Recipe recipe = myRecipes.get(r.nextInt(myRecipes.size()));
+        events.logEvent(new Event("Got random recipe: '" + recipe.getName() + "'"));
+        return recipe;
     }
 
     public ArrayList<Recipe> getMyRecipes() {
         return myRecipes;
+    }
+
+    public static EventLog getEventLog() {
+        return events;
     }
 
     @Override
