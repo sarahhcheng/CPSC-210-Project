@@ -3,6 +3,7 @@
 
 ## An application that organizes and stores all your recipes
 
+
 My project will be a recipe book application that organizes and stores
 all the recipes added to it. This way, users can easily revisit some of 
 their old recreations by just **searching up the title of the recipe without 
