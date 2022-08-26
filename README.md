@@ -1,4 +1,4 @@
-# Recipe Book
+# Recipe Book Application
 
 ## An application that organizes and stores all your recipes
 
